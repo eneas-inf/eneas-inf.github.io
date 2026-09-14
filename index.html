@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            body > .name {
+                font-size: 48px;
+                color: #000;
+                letter-spacing: 2px;
+                white-space: nowrap;
+                text-align: center;
+                padding-right: 5px;
+                display: inline-block;
+            }
+
+            body > .cursor {
+                width: 6px;
+                height: 48px;
+                opacity: 1;
+                background: #000;
+                margin-left: 2px;
+                display: inline-block;
+                animation: blink 0.7s step-start infinite;
+                transition: width 0.4s ease, opacity 0s ease;
+            }
+
+            body > .hidden {
+                width: 0;
+                opacity: 0;
+            }
+
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="name"></div>
+        <span class="cursor"></span>
+
+        <script>
+            const nameElement = document.querySelector("body > .name");
+            const cursorElement = document.querySelector("body > .cursor");
+            const name = "Eneas Infanger";
+            let index = 0;
+
+            function typeName() {
+                nameElement.textContent += name[index];
+                index++;
+                if (index < name.length) {
+                    setTimeout(typeName, 150);
+                } else {
+                    // Stop blinking and hide cursor after typing
+                    setTimeout(() => {
+                        cursorElement.classList.add("hidden");
+                    }, 80);
+                }
+            }
+
+            function addFunzies() {
+                const emojis = [
+                    "😀", "😄", "😁", "😆", "😅",
+                    "😂", "🤣", "🙂", "😉", "😊",
+                    "😍", "🥰", "😎", "🤔", "😴",
+                    "👍", "👎", "👌", "👏", "🙏",
+                    "🎉", "✨", "🔥", "🌟", "⭐"
+                ];
+                const randomEmoji = () => emojis[Math.trunc(Math.random()*emojis.length)]
+
+                document.querySelector(".name").textContent += " " + randomEmoji()
+            }
+            
+            window.onload = function() {
+                addFunzies();
+                
+                setTimeout(() => {
+                    typeName();
+                }, 1150); // ~3 blinks (0.7s * 3)
+            };
+        </script>
+    </body>
+</html>

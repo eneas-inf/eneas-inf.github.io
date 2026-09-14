@@ -65,23 +65,8 @@
                     }, 80);
                 }
             }
-
-            function addFunzies() {
-                const emojis = [
-                    "😀", "😄", "😁", "😆", "😅",
-                    "😂", "🤣", "🙂", "😉", "😊",
-                    "😍", "🥰", "😎", "🤔", "😴",
-                    "👍", "👎", "👌", "👏", "🙏",
-                    "🎉", "✨", "🔥", "🌟", "⭐"
-                ];
-                const randomEmoji = () => emojis[Math.trunc(Math.random()*emojis.length)]
-
-                document.querySelector(".name").textContent += " " + randomEmoji()
-            }
             
             window.onload = function() {
-                addFunzies();
-                
                 setTimeout(() => {
                     typeName();
                 }, 1150); // ~3 blinks (0.7s * 3)
